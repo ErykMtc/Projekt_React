@@ -5,7 +5,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Ranking from './pages/Ranking';
 import Footer from './components/Footer';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
+
 
 function App() {
   return (

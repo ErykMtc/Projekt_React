@@ -6,7 +6,7 @@ export default function Ranking() {
     return(
         <div>
             <Container>
-                    <h1>AAAAA</h1>
+                    <h3>AAAAA</h3>
             </Container>
         </div>
     )

@@ -2,14 +2,18 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom"
 
 export default function Navbar() {
   return (
-    <nav className="navbar">
-      <Link to="/" className="site-title">
-        Filmoteka
-      </Link>
+    <div className="navbar">
+      <div className="site-title">
+        <Link to="/" className="">
+          Filmoteka
+        </Link>
+      </div>
+      
       <ul className="menu">
         <CustomLink to="/">Strona Główna</CustomLink>
         <CustomLink to="/about">Kontakt</CustomLink>
         <CustomLink to="/ranking">Ranking</CustomLink>
+        <CustomLink to="/ranking">Ulubione</CustomLink>
         <CustomLink to="/search">Wyszukaj</CustomLink>
         
         {/* Zrobić wyszukiwarke podobną do tej na stronie Cisco */}
@@ -18,7 +22,7 @@ export default function Navbar() {
         <Link to="/about" className="login-btn">Zaloguj się</Link>
       </div>
       
-    </nav>
+    </div>
   )
 }
 

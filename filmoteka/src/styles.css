@@ -11,15 +11,20 @@ body{
 .navbar{
     display: flex;
     background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
-    /* justify-content: space-between; rozdziela kontent w navbar na prawo i lewo */
+    justify-content: space-between; /*rozdziela kontent w navbar na rowne odstepy*/
     align-items: center;
     color: white;
     padding: 1rem 1.75rem;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .navbar a{
     color: inherit;
     text-decoration: none;
+}
+
+.navbar a:hover{
+    color: white;
 }
 
 .navbar ul a{
@@ -35,9 +40,12 @@ body{
 }
 
 .site-title{
-    flex: 1;
-    font-size: 1.75rem !important;
-    padding: 0 !important;
+    /* flex: 1; */
+    padding: 0;
+}
+
+.site-title a{
+    font-size: 1.75rem;
 }
 
 .navbar ul{
@@ -52,7 +60,7 @@ body{
 }
 
 .login-section{
-    flex:1;
+    /* flex:1; */
     text-align: right;
 }
 

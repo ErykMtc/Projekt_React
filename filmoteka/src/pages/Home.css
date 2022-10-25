@@ -1,0 +1,49 @@
+.home-section{
+    margin: 0.125rem 0;
+}
+
+.home-section img{
+    object-fit:cover;
+    height: 600px;
+}
+
+/* Carousel layout */
+.carousel-caption {
+    top: 30%;
+    bottom: auto;
+}
+
+.info-panel{
+    padding: 5rem 0;
+    width: 70%;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.info-panel p{
+    margin: 0;
+}
+
+/* second section */
+
+.second-section{
+    margin-top: 2rem;
+}
+
+.card-element{
+    background-color: aqua;
+    border-radius: 3px;
+}
+
+/* Third section */
+.bg-color{
+    background-color: aliceblue;
+}
+
+.third-section{
+    margin-top: 4rem;
+}
+
+.news-info{
+    margin: 1rem 0;
+}
