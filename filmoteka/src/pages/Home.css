@@ -170,3 +170,72 @@ h1{
     display: flex;
     justify-content: right;
 }
+
+/* last section */
+
+/* .carousel-control {
+    padding-top: 10%;
+    width: 5%;
+  }
+  
+  .thumbnail {
+    width: 100px;
+    height: 100px;
+    background-color: skyblue;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+  } */
+
+.last-section .carousel-control-next,
+.last-section .carousel-control-prev {
+    /* filter: invert(100%); */
+}
+
+.last-section .carousel-control-prev,
+.last-section .carousel-control-next{
+    width: 70px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-galery{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
+.last-section-img{
+    width: 100%;
+    height: 200px;
+}
+
+.rating{
+    color: darkorange;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.rating span{
+    font-size: 2.5rem;
+}
+
+.carousel-content{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    background-color: darkgray;
+}
+
+.carousel-content p{
+    font-size: 2rem;
+}
+
+.carousel-element:nth-child(2){
+    margin: 0 1rem;
+}

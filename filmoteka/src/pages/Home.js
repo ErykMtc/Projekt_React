@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilm } from '@fortawesome/free-solid-svg-icons'
+import { faFilm, faStar } from '@fortawesome/free-solid-svg-icons'
 
 import Img1 from "../img/img-1.jpg";
 import Img2 from "../img/img-2.jpg";
@@ -114,12 +114,12 @@ export default function Home() {
                         <Col md="6" className="my-auto">
                             <div className="news-info-box">
                                 <div className="news-info-box-icon">
-                                    <FontAwesomeIcon icon={faFilm} size = '2x' />
+                                    <FontAwesomeIcon icon={faFilm} size='2x' />
                                 </div>
                                 <div className="news-info-box-content">
                                     <h3>Shrek shrek fajny jest</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at justo eros. Morbi molestie purus sed eros congue gravida. Vestibulum a mattis tortor. Sed tempor luctus est, sed ultrices sapien porta ac. Donec dictum velit vel sapien varius, nec ultricies lacus placerat. Nam sed arcu vel nibh interdum maximus a sit amet velit. Nulla non orci sed nulla gravida porta</p>
-                                    <button class="third-section-btn">Czytaj więcej...</button> 
+                                    <button class="third-section-btn">Czytaj więcej...</button>
                                 </div>
                             </div>
                         </Col>
@@ -127,14 +127,14 @@ export default function Home() {
 
                     <Row className="gx-0 news-info">
                         <Col md="6" className="my-auto">
-                        <div className="news-info-box">
+                            <div className="news-info-box">
                                 <div className="news-info-box-icon">
-                                    <FontAwesomeIcon icon={faFilm} size = '2x' />
+                                    <FontAwesomeIcon icon={faFilm} size='2x' />
                                 </div>
                                 <div className="news-info-box-content">
                                     <h3>Shrek shrek fajny jest</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at justo eros. Morbi molestie purus sed eros congue gravida. Vestibulum a mattis tortor. Sed tempor luctus est, sed ultrices sapien porta ac. Donec dictum velit vel sapien varius, nec ultricies lacus placerat. Nam sed arcu vel nibh interdum maximus a sit amet velit. Nulla non orci sed nulla gravida porta</p>
-                                    <button class="third-section-btn">Czytaj więcej...</button> 
+                                    <button class="third-section-btn">Czytaj więcej...</button>
                                 </div>
                             </div>
                         </Col>
@@ -144,14 +144,14 @@ export default function Home() {
                     <Row className="gx-0 news-info">
                         <Col md="6" className=""><img className="third-section-img" src={temp} alt="First" /></Col>
                         <Col md="6" className="my-auto">
-                        <div className="news-info-box">
+                            <div className="news-info-box">
                                 <div className="news-info-box-icon">
-                                    <FontAwesomeIcon icon={faFilm} size = '2x' />
+                                    <FontAwesomeIcon icon={faFilm} size='2x' />
                                 </div>
                                 <div className="news-info-box-content">
                                     <h3>Shrek shrek fajny jest</h3>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent at justo eros. Morbi molestie purus sed eros congue gravida. Vestibulum a mattis tortor. Sed tempor luctus est, sed ultrices sapien porta ac. Donec dictum velit vel sapien varius, nec ultricies lacus placerat. Nam sed arcu vel nibh interdum maximus a sit amet velit. Nulla non orci sed nulla gravida porta</p>
-                                    <button class="third-section-btn">Czytaj więcej...</button> 
+                                    <button class="third-section-btn">Czytaj więcej...</button>
                                 </div>
                             </div>
                         </Col>
@@ -160,6 +160,109 @@ export default function Home() {
             </div>
             <Container className="last-section">
                 <h1>Najwyżej oceniane</h1>
+
+                <Carousel activeIndex={index} onSelect={handleSelect}>
+                    <Carousel.Item>
+                        <div className="carousel-galery">
+                            <div className="carousel-element">
+                                <div><img className="last-section-img" src={icon} /></div>
+                                <div className="rating">
+                                    <span><FontAwesomeIcon icon={faStar} size='1x' /> 8.5</span>
+                                </div>
+                                <div className="carousel-content">
+                                    <p>Asterix i Obeliks</p>
+                                </div>
+                            </div>
+
+                            <div className="carousel-element">
+                                <div><img className="last-section-img" src={icon} /></div>
+                                <div className="rating">
+                                    <span><FontAwesomeIcon icon={faStar} size='1x' /> 8.5</span>
+                                </div>
+                                <div className="carousel-content">
+                                    <p>Asterix i Obeliks</p>
+                                </div>
+                            </div>
+
+                            <div className="carousel-element">
+                                <div><img className="last-section-img" src={icon} /></div>
+                                <div className="rating">
+                                    <span><FontAwesomeIcon icon={faStar} size='1x' /> 8.5</span>
+                                </div>
+                                <div className="carousel-content">
+                                    <p>Asterix i Obeliks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                    <div className="carousel-galery">
+                            <div className="carousel-element">
+                                <div><img className="last-section-img" src={icon} /></div>
+                                <div className="rating">
+                                    <span><FontAwesomeIcon icon={faStar} size='1x' /> 8.5</span>
+                                </div>
+                                <div className="carousel-content">
+                                    <p>Asterix i Obeliks</p>
+                                </div>
+                            </div>
+
+                            <div className="carousel-element">
+                                <div><img className="last-section-img" src={icon} /></div>
+                                <div className="rating">
+                                    <span><FontAwesomeIcon icon={faStar} size='1x' /> 8.5</span>
+                                </div>
+                                <div className="carousel-content">
+                                    <p>Asterix i Obeliks</p>
+                                </div>
+                            </div>
+
+                            <div className="carousel-element">
+                                <div><img className="last-section-img" src={icon} /></div>
+                                <div className="rating">
+                                    <span><FontAwesomeIcon icon={faStar} size='1x' /> 8.5</span>
+                                </div>
+                                <div className="carousel-content">
+                                    <p>Asterix i Obeliks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Carousel.Item>
+                    <Carousel.Item>
+                    <div className="carousel-galery">
+                            <div className="carousel-element">
+                                <div><img className="last-section-img" src={icon} /></div>
+                                <div className="rating">
+                                    <span><FontAwesomeIcon icon={faStar} size='1x' /> 8.5</span>
+                                </div>
+                                <div className="carousel-content">
+                                    <p>Asterix i Obeliks</p>
+                                </div>
+                            </div>
+
+                            <div className="carousel-element">
+                                <div><img className="last-section-img" src={icon} /></div>
+                                <div className="rating">
+                                    <span><FontAwesomeIcon icon={faStar} size='1x' /> 8.5</span>
+                                </div>
+                                <div className="carousel-content">
+                                    <p>Asterix i Obeliks</p>
+                                </div>
+                            </div>
+
+                            <div className="carousel-element">
+                                <div><img className="last-section-img" src={icon} /></div>
+                                <div className="rating">
+                                    <span><FontAwesomeIcon icon={faStar} size='1x' /> 8.5</span>
+                                </div>
+                                <div className="carousel-content">
+                                    <p>Asterix i Obeliks</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Carousel.Item>
+                </Carousel>
+
             </Container>
         </div>
     );
