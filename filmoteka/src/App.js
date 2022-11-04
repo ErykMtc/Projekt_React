@@ -7,6 +7,8 @@ import Ranking from './pages/Ranking';
 import Footer from './components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
+import SignIn from './pages/SignIn';
+import Registration from './pages/Registration';
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/ranking' element={<Ranking />} />
+          <Route path='/signIn' element={<SignIn />} />
+          <Route path='/register' element={<Registration />} />
         </Routes>
         <Footer />
       </Router>

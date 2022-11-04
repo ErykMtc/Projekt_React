@@ -15,13 +15,13 @@ export default function Navbar() {
         <CustomLink to="/">Strona Główna</CustomLink>
         <CustomLink to="/about">Kontakt</CustomLink>
         <CustomLink to="/ranking">Ranking</CustomLink>
-        <CustomLink to="/ulubione">Ulubione</CustomLink>
+        <CustomLink to="/following">Ulubione</CustomLink>
         <CustomLink to="/search">Wyszukaj <FontAwesomeIcon icon={faSearch} /></CustomLink>
         
         {/* Zrobić wyszukiwarke podobną do tej na stronie Cisco */}
       </ul>
       <div className="login-section">
-        <Link to="/about" className="login-btn">Zaloguj się</Link>
+        <Link to="/signin" className="login-btn">Zaloguj się</Link>
       </div>
       
     </div>
