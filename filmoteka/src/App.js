@@ -10,7 +10,6 @@ import './styles.css';
 import SignIn from './pages/SignIn';
 import Registration from './pages/Registration';
 
-
 function App() {
   return (
     <>

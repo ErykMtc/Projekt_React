@@ -1,9 +1,14 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faRectangleXmark} from '@fortawesome/free-solid-svg-icons'
+import React, { useState } from 'react';
 
 export default function Navbar() {
+  const [visible, setVisible] = React.useState(false);
+
+
   return (
+    <>
     <div className="navbar">
       <div className="site-title">
         <Link to="/" className="">
@@ -16,7 +21,7 @@ export default function Navbar() {
         <CustomLink to="/about">Kontakt</CustomLink>
         <CustomLink to="/ranking">Ranking</CustomLink>
         <CustomLink to="/following">Ulubione</CustomLink>
-        <CustomLink to="/search">Wyszukaj <FontAwesomeIcon icon={faSearch} /></CustomLink>
+        <CustomLink to="#" onClick={() => setVisible(!visible)}>Wyszukaj <FontAwesomeIcon icon={faSearch} /></CustomLink>
         
         {/* Zrobić wyszukiwarke podobną do tej na stronie Cisco */}
       </ul>
@@ -25,6 +30,21 @@ export default function Navbar() {
       </div>
       
     </div>
+
+    {/* chowajacy sie prostokat przy pomocy hook */}
+    <div className={visible ? 'search-container-vis' : 'search-container-hid'}>
+      <div className="close-section">
+        <span className="close-symbol" onClick={() => setVisible(!visible)}><FontAwesomeIcon icon={faRectangleXmark} size='2x' /></span>
+      </div>
+
+        <form className="search-section">
+          <input className="search-input" type="text" id="name" name="name"  minlength="1" maxlength="100" placeholder="Wyszukaj"/>
+          <span className="input-icon"><FontAwesomeIcon icon={faSearch} size='2xl' /></span>
+        </form>
+        
+    </div>
+    </>
+    
   )
 }
 

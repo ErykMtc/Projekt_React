@@ -86,4 +86,73 @@ body{
     padding: 2rem;
 }
 
+/* Search section */
 
+.search-container-vis{
+    color: orange;
+    width: 100%;
+    /* height: 200px; */
+    background-color:  rgb(35, 35, 35);
+    /* visibility: hidden; */
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 3rem;
+}
+
+.search-container-hid{
+    width: 100%;
+    /* background-color: gray; */
+    visibility: hidden;
+    position: absolute;
+    z-index: 2;
+/* zrobić animacja tego kloca */
+}
+
+.close-section{
+    /* width: 100%; */
+    text-align: right;
+    padding: 0.5rem;
+}
+
+.close-symbol{
+    cursor: pointer;
+}
+
+.search-section{
+    background-color: white;
+    padding-left: 2rem;
+    padding-right: 0.5rem;
+    border-radius: 50px;
+    margin: 0.75rem 2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.search-input{
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    flex: 1;
+    padding: 1.5rem 0;
+}
+
+.input-icon{
+    padding: 1.25rem;
+    border-radius: 50%;
+    align-self: center;
+    background-color: orange;
+    color: white;
+    cursor: pointer;
+}
+
+.input-icon:hover{
+    background-color: rgb(255, 136, 0);
+}
+
+.search-input::placeholder{
+    color: black;
+}
