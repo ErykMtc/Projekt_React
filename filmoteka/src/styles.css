@@ -1,3 +1,7 @@
+:root {
+    --border-color: transparent;
+  }
+
 * {
     box-sizing: border-box;
     font-size: 16px;
@@ -128,6 +132,7 @@ body{
     margin: 0.75rem 2rem;
     display: flex;
     flex-direction: row;
+    border: solid var(--border-color);
 }
 
 .search-input{
@@ -138,6 +143,10 @@ body{
     width: 100%;
     flex: 1;
     padding: 1.5rem 0;
+}
+
+.search-section:focus-within{
+    border: solid orange;
 }
 
 .input-icon{
@@ -155,4 +164,14 @@ body{
 
 .search-input::placeholder{
     color: black;
+}
+
+
+/* Admin-Nav Section*/
+
+.admin-nav{
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: darkblue;
 }

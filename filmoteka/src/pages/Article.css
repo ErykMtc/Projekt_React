@@ -1,0 +1,136 @@
+hr {
+    width: 12%;
+    border-style: dotted none none;
+    border-width: 9px;
+    border-color: black;
+    margin: 2rem auto;
+    
+}
+
+.header-underline{
+    display: inline-block;
+}
+
+.header-underline h2{
+    border-bottom: 4px solid orange;
+    /* border-bottom: 4px solid rgb(203, 203, 203); */
+}
+
+.article-top-bg{
+    /* background-color: rgba(0, 0, 0, 0.071); */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.article-main{
+    /* padding-top: 2rem; */
+    background-image: url(../img/aaaaaaaaaa.png);
+    background-size:contain;
+    background-repeat: no-repeat;
+}
+
+.article-img{
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.title{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.right-section{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.right-section:nth-child(3){
+    margin-top: 1.125rem;
+}
+
+.chart-text{
+    font-size: 1.5rem;
+}
+
+.chart{
+    font-size: 3rem;
+    font-weight: bold;
+    color: darkorange;
+    padding-left: 1rem;
+}
+
+.special-text{
+    color: gray;
+    width: 90px;
+}
+
+.special-text-info{
+    padding-left: 1rem;
+}
+
+/* Description section */
+
+.article-second-section{
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+}
+
+/* Actor section */
+
+.article-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem
+}
+
+.article-list li{
+    font-size: 1.5rem;
+    flex-basis: 32%;
+    list-style-image: url(../img/bullet.svg);
+}
+
+.article-list li::marker{
+    font-size: 2.5rem;
+}
+
+
+
+/* comment section */
+
+.com-textarea{
+    resize: none;
+    height: 7rem;
+}
+
+.comment-bg{
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    background-color: rgba(0, 0, 0, 0.055);
+}
+
+.create-comment{
+    background-color: rgba(0, 0, 0, 0.055);
+    padding: 2rem 2.5rem;
+    border-radius: 10px;
+}
+
+.comment-box{
+    border: 2px solid rgba(255, 166, 0, 0.331);
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border-radius: 6px;
+}
+
+.com-user{
+    color: darkblue;
+    font-weight: bolder;
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.com-text{
+    margin: 0;
+}

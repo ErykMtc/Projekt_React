@@ -9,11 +9,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import SignIn from './pages/SignIn';
 import Registration from './pages/Registration';
+import AdminNav from './components/AdminNav';
+import AdminSection from './pages/AdminSection';
+import Article from './pages/Article';
 
 function App() {
   return (
     <>
       <Router>
+        {/* <AdminNav /> */}
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
@@ -21,6 +25,8 @@ function App() {
           <Route path='/ranking' element={<Ranking />} />
           <Route path='/signIn' element={<SignIn />} />
           <Route path='/register' element={<Registration />} />
+          <Route path='/admin' element={<AdminSection />} />
+          <Route path='/article' element={<Article />} />
         </Routes>
         <Footer />
       </Router>
