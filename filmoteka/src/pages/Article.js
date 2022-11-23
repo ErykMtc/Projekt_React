@@ -14,8 +14,13 @@ export default function Article() {
             <div className="article-top-bg">
                 <Container>
                     <Row>
-                        <Col className="" lg='5'>
+                        <Col className="article-top" lg='5'>
                             <img className="article-img" src={temp} alt="First" />
+                            <div className="article-img-subsection">
+                            <input type="text" name="name" placeholder="-" /> 
+                            <span>/10 <FontAwesomeIcon icon={faStar} size='1x' /></span>
+                            <input type="submit" value="Oceń" />
+                            </div>
                         </Col>
                         <Col lg='7'>
                             <p className="title">Shrek potężny</p>

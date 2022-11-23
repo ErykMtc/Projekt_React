@@ -12,6 +12,8 @@ import Registration from './pages/Registration';
 import AdminNav from './components/AdminNav';
 import AdminSection from './pages/AdminSection';
 import Article from './pages/Article';
+import News from './pages/News';
+import Following from './pages/Following';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path='/register' element={<Registration />} />
           <Route path='/admin' element={<AdminSection />} />
           <Route path='/article' element={<Article />} />
+          <Route path='/news' element={<News />} />
+          <Route path='/following' element={<Following />} />
         </Routes>
         <Footer />
       </Router>

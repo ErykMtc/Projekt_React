@@ -1,0 +1,34 @@
+.main-following{
+    margin: 2rem 0;;
+}
+
+.following-container{
+    text-align: center;
+}
+
+.following-container h2{
+    font-size: 3.5rem;
+}
+
+.following-movie{
+    margin: 0.5rem 0;
+    display:inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 60rem;
+    padding: 2.5rem;
+    align-items: center;
+    border: 2px solid orange;
+    background-color: rgba(128, 128, 128, 0.128);
+    border-radius: 4px;
+}
+
+.following-movie span{
+    font-size: 1.5rem;
+}
+
+.following-movie p{
+    font-size: 1.5rem;
+    margin: 0;
+}

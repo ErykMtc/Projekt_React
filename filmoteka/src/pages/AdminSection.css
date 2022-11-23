@@ -1,0 +1,38 @@
+.admin-main{
+    margin: 2rem 0;
+}
+
+.admin-main button{
+    margin: 2rem 0;
+}
+
+.admin-first-sec{
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-user{
+    margin: 0.5rem 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 2.5rem;
+    align-items: center;
+    border: 2px solid orange;
+    background-color: rgba(128, 128, 128, 0.128);
+    border-radius: 4px;
+}
+
+.admin-user span{
+    font-size: 1.5rem;
+}
+
+.admin-user p{
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.admin-last-sec{
+    display: flex;
+    flex-direction: column;
+}
