@@ -47,7 +47,7 @@ export default function Article() {
                 <hr></hr>
                 <Row>
                     <Col className="article-second-section">
-                        <div class="header-underline">
+                        <div className="header-underline">
                             <h2>Opis</h2>
                         </div>
                         <p>
@@ -60,7 +60,7 @@ export default function Article() {
                 <hr></hr>
                 <Row>
                     <Col className="article-third-section">
-                        <div class="header-underline">
+                        <div className="header-underline">
                             <h2>Aktorzy</h2>
                         </div>
                         <ul className="article-list">
@@ -94,7 +94,7 @@ export default function Article() {
                 <Container>
                     <Row>
                         <Col className="article-last-section">
-                            <div class="header-underline">
+                            <div className="header-underline">
                                 <h2>Komentarze</h2>
                             </div>
                             <div className="create-comment">
@@ -107,7 +107,7 @@ export default function Article() {
                                         <Form.Label>Komentarz</Form.Label>
                                         <Form.Control className="com-textarea" as="textarea" rows={3} />
                                     </Form.Group>
-                                    <button class="third-section-btn">Opublikuj</button>
+                                    <button className="third-section-btn">Opublikuj</button>
                                 </Form>
                             </div>
 

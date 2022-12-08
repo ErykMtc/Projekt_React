@@ -26,7 +26,7 @@ export default function Navbar() {
         {/* Zrobić wyszukiwarke podobną do tej na stronie Cisco */}
       </ul>
       <div className="login-section">
-        <Link to="/signin" className="login-btn">Zaloguj się</Link>
+        <Link to="/login" className="login-btn">Zaloguj się</Link>
       </div>
       
     </div>
@@ -38,7 +38,7 @@ export default function Navbar() {
       </div>
 
         <form className="search-section">
-          <input className="search-input" type="text" id="name" name="name"  minlength="1" maxlength="100" placeholder="Wyszukaj"/>
+          <input className="search-input" type="text" id="name" name="name"  minLength="1" maxLength="100" placeholder="Wyszukaj"/>
           <span className="input-icon"><FontAwesomeIcon icon={faSearch} size='2xl' /></span>
         </form>
         

@@ -1,0 +1,25 @@
+.about-main{
+    margin: 5rem 0;
+    padding: 3rem 0;
+    background-color: rgba(0, 0, 0, 0.114);
+}
+
+.about-Col{
+    border-right: 0.125rem solid;
+}
+
+.about-container{
+    text-align: center;
+}
+
+.about-container h1{
+    font-size: 2rem;
+    color: rgb(99, 99, 99);
+    font-style: italic;
+}
+
+.about-container h2{
+    font-size: 1.5rem;
+    margin: 0.8rem;
+}
+
