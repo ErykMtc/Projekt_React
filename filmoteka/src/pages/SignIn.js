@@ -1,15 +1,23 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Link } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from "../context/AuthProvider";
+// import AuthContext from "../context/AuthProvider";
 import axios from 'axios';
+
+import useAuth from '../hooks/useAuth';
 
 import "./SignIn.css";
 
 export default function SignIn() {
-    const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useAuth();
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+
+
     const userRef = useRef();
     const errRef = useRef();
 
@@ -29,25 +37,31 @@ export default function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        console.log({ login: user, password: pwd });
         try {
             const response = await axios.post('/login',
-                JSON.stringify({ user, pwd }),
+            {},
                 {
                     headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
                     auth: {
                         username: user,
                         password: pwd
                     }
                 }
             );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
+
+            console.log(response?.data);
+
             // const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.role;
+            const roles = response?.data.role;
+            console.log(roles)
             setAuth({ user, pwd, roles});
             setUser('');
             setPwd('');
-            setSuccess(true);
+
+            //throw to another page
+            navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response');

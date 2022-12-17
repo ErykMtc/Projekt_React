@@ -14,26 +14,30 @@ import AdminSection from './pages/AdminSection';
 import Article from './pages/Article';
 import News from './pages/News';
 import Following from './pages/Following';
+import ProtectedRoutes from './hooks/ProtectedRoutes';
 
 function App() {
   return (
     <>
-      <Router>
-        {/* <AdminNav /> */}
+      {/* <Router> */}
+        <AdminNav />
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route path='/ranking' element={<Ranking />} />
           <Route path='/login' element={<SignIn />} />
           <Route path='/register' element={<Registration />} />
           <Route path='/admin' element={<AdminSection />} />
-          <Route path='/article' element={<Article />} />
-          <Route path='/news' element={<News />} />
-          <Route path='/following' element={<Following />} />
+          <Route element={<ProtectedRoutes allowedRoles={"USER"}/>}>
+            <Route path='/article' element={<Article />} />
+            <Route path='/ranking' element={<Ranking />} />
+            <Route path='/news' element={<News />} />
+            <Route path='/following' element={<Following />} />
+          </Route>
+
         </Routes>
         <Footer />
-      </Router>
+      {/* </Router> */}
     </>
   );
 }
