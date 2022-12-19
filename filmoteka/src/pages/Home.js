@@ -129,7 +129,7 @@ export default class Home extends Component {
                         {this.state.movies.map((item, iteration) => {
                             if (iteration % 2 === 0)
                                 return <Row className="gx-0 news-info" >
-                                    <Col md="6" className=""><img className="third-section-img" src={temp} alt="First" /></Col>
+                                    <Col md="6" className=""><img className="third-section-img" src={`data:image/jpeg;base64,${item.picture}`} alt="First" /></Col>
                                     <Col md="6" className="my-auto">
                                         <div className="news-info-box">
                                             <div className="news-info-box-icon">
@@ -156,7 +156,7 @@ export default class Home extends Component {
                                         </div>
                                     </div>
                                 </Col>
-                                <Col md="6" className=""><img className="third-section-img" src={temp} alt="First" /></Col>
+                                <Col md="6" className=""><img className="third-section-img" src={`data:image/jpeg;base64,${item.picture}`} alt="First" /></Col>
                             </Row>
                         }
                         )}

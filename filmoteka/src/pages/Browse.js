@@ -8,10 +8,10 @@ import { useRef, useState, useEffect, useContext } from 'react';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function Ranking() {
+export default function Browse() {
 
     const {auth} = useAuth();
-    
+    var start = 0;
     // const axiosTest = async () => {
     //     try {
     //       const {data:response} = await axios.get('/movies/ranking') //use data destructuring to get data from the promise object
@@ -31,8 +31,8 @@ export default function Ranking() {
     axios.get('/movies', {
       headers: { 'Content-Type': 'application/json' },
                     auth: {
-                        username: auth.user,
-                        password: auth.pwd
+                        username: 'test',
+                        password: 'test1'
                     }
     }).then((response) => {
       setPost(response.data);
@@ -45,19 +45,24 @@ export default function Ranking() {
     return(
         <div>
             <Container>
+                <Col>
                     {/* <div>{this.state.movie}</div> */}
                 <h2>Ranking Filmów</h2>
                 <hr></hr>
 
                 {/* {post[0].name}  */}
 
-                {post.map((item, iteration) => 
+                {post.slice(start, start + 5 < post.length ? start + 5 : post.length).map((item, iteration) => 
                 <div key={iteration} className='following-movie'>
                     <span>{iteration + 1}</span>
                     <p>{item.name}</p>
                     <span>{item.mark}/10 <FontAwesomeIcon icon={faStar} size='1x' /></span>
                 </div>
                 )}
+                </Col>
+                <Col>
+                <p>sdds</p>
+                </Col>
             </Container>
         </div>
     )

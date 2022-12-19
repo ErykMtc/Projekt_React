@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -15,6 +15,7 @@ import Article from './pages/Article';
 import News from './pages/News';
 import Following from './pages/Following';
 import ProtectedRoutes from './hooks/ProtectedRoutes';
+import Browse from './pages/Browse';
 
 function App() {
   return (
@@ -28,13 +29,14 @@ function App() {
           <Route path='/login' element={<SignIn />} />
           <Route path='/register' element={<Registration />} />
           <Route path='/admin' element={<AdminSection />} />
-          <Route path='/name/*' element={<Article />} />
+          <Route path='/movie/*' element={<Article />} />
+          <Route path='/browse' element={<Browse />} />
           <Route element={<ProtectedRoutes allowedRoles={"USER"}/>}>
-            
             <Route path='/ranking' element={<Ranking />} />
             <Route path='/news' element={<News />} />
             <Route path='/following' element={<Following />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" />} />
 
         </Routes>
         <Footer />
