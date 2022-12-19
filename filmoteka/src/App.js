@@ -28,8 +28,9 @@ function App() {
           <Route path='/login' element={<SignIn />} />
           <Route path='/register' element={<Registration />} />
           <Route path='/admin' element={<AdminSection />} />
+          <Route path='/name/*' element={<Article />} />
           <Route element={<ProtectedRoutes allowedRoles={"USER"}/>}>
-            <Route path='/article' element={<Article />} />
+            
             <Route path='/ranking' element={<Ranking />} />
             <Route path='/news' element={<News />} />
             <Route path='/following' element={<Following />} />

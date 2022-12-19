@@ -1,11 +1,23 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faRectangleXmark} from '@fortawesome/free-solid-svg-icons'
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Navbar() {
   const [visible, setVisible] = React.useState(false);
 
+  const [movie, setMovie] = useState(null);
+
+  const handleClickk = async (e) => {
+
+    console.log("jestem")
+    try {
+      const res = await axios.get('/movies/search', { params: { name: movie } });
+    } catch(err){
+      console.log("nie bangla");
+    }   
+  }
 
   return (
     <>
@@ -26,7 +38,7 @@ export default function Navbar() {
         {/* Zrobić wyszukiwarke podobną do tej na stronie Cisco */}
       </ul>
       <div className="login-section">
-        <Link to="/login" className="login-btn">Zaloguj się</Link>
+        <Link to="/login"  className="login-btn">Zaloguj się</Link>
       </div>
       
     </div>
@@ -38,8 +50,11 @@ export default function Navbar() {
       </div>
 
         <form className="search-section">
-          <input className="search-input" type="text" id="name" name="name"  minLength="1" maxLength="100" placeholder="Wyszukaj"/>
-          <span className="input-icon"><FontAwesomeIcon icon={faSearch} size='2xl' /></span>
+          <input className="search-input" type="text" id="name" name="name"  minLength="1" maxLength="100" placeholder="Wyszukaj"
+          onChange={(e) => setMovie(e.target.value)} value={movie || ''}
+          required/>
+          <span className="input-icon" onClick={(e) => handleClickk()}><FontAwesomeIcon icon={faSearch} size='2xl' /></span>
+          {/* <button className="input-icon" ><FontAwesomeIcon icon={faSearch} size='2xl' /></button> */}
         </form>
         
     </div>
