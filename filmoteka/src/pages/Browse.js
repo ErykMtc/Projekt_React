@@ -48,14 +48,13 @@ export default function Browse() {
       setPost(response.data);
     });
   }, []);
-            console.log(auth);
-            console.log(post)
+
             if (!post) return null;
             if(!filter){
                 setFilter("Wszystkie");
             }
 
-            if (filter != "Wszystkie"){
+            if (filter != "Wszystkie" && post.length > 0){
                 var filtered = post.filter((item) => item.name.startsWith(filter))
             }else{
                 var filtered = post;

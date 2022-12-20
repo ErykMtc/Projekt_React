@@ -3,13 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faRectangleXmark} from '@fortawesome/free-solid-svg-icons'
 import React, { useRef, useState, useEffect } from 'react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import ProtectedRoutes from "../hooks/ProtectedRoutes";
 
 export default function Navbar() {
   const [visible, setVisible] = React.useState(false);
 
   const [movie, setMovie] = useState(null);
-
+  var userdata = Cookies.get('usrFilmoteka');
+  if(userdata){
+    userdata = JSON.parse(userdata);
+  }
   const handleClickk = async (e) => {
+
+
 
     console.log("jestem")
     try {
@@ -38,8 +45,18 @@ export default function Navbar() {
         {/* Zrobić wyszukiwarke podobną do tej na stronie Cisco */}
       </ul>
       <div className="login-section">
-        <Link to="/login"  className="login-btn">Zaloguj się</Link>
-      </div>
+        <Link onClick={() => {
+         if(userdata){
+          Cookies.remove('usrFilmoteka');
+          userdata = false;
+          window.location.href = '/';
+         }else{
+          window.location.href = '/login';
+          userdata = Cookies.get('usrFilmoteka');
+         } 
+        }} to={userdata ? "/" : "/login"}  className="login-btn">{ userdata ? userdata.user : "Zaloguj się"}</Link>
+        </div> 
+ 
       
     </div>
 

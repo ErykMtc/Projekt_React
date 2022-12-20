@@ -11,11 +11,17 @@ export default function Following() {
 
     const {auth} = useAuth();
 
-    const [movie, setMovie] = useState(null);
+    const [movie, setMovie] = useState([]);
+    const [flag, setFlag] = useState(true);
     const userdata = JSON.parse(Cookies.get('usrFilmoteka'));
 
-  useEffect(() => {
-    axios.post('/login',
+
+    useEffect(() => {
+        if(flag){
+            try{
+                setFlag(false);
+                setMovie([]);
+            axios.post('/login',
             {},
                 {
                     headers: { 'Content-Type': 'application/json' },
@@ -26,20 +32,35 @@ export default function Following() {
                     }
                 }
             ).then((response) => {
-      setMovie(response.data.observedMovie.map((item, iteration) => axios.get('/movies/id/' + item,
-          {
-              headers: { 'Content-Type': 'application/json' },
-              withCredentials: true,
-              auth: {
-                  username: userdata.user,
-                  password: userdata.pwd
-              }
-          }
-      )));
-    });
-  }, []);
-  console.log("huh");
+                //setObserved(response.data.observedMovie);
+                setFlag(false);
+                setMovie([]);
+                response.data.observedMovie.forEach(item => axios.get('/movies/id/' + item,
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
+                    auth: {
+                        username: userdata.user,
+                        password: userdata.pwd
+                    }
+                }).then((response) => {
+                    setMovie(oldArray => [...oldArray, response.data]);
+                }, (error) => {
+                    console.log(error);
+                })    
+                );
+              }, (error) => {
+                console.log(error);
+              });
+            } catch(e){
+                console.log(e);
+            }
+        }
 
+
+      }, []);
+      //setFlag(false);
+            
             if (!movie) return(
                 <div className='main-following'>
                     <Container className='following-container'>
@@ -53,21 +74,6 @@ export default function Following() {
                     </Container>
                 </div>
             );
-
-    // componentDidMount(){
-    //     this.state.auth = useAuth();
-
-    //     const url = "/movies";
-    //     const response = await fetch(url, { 
-    //         method: 'GET', 
-    //         headers: new Headers({
-    //             'Authorization': 'Basic '+btoa('test:test1'), 
-    //             'Content-Type': 'application/json'
-    //         })}, {mode: "cors"});
-    //     const data = await response.json();
-    //     this.setState({movie: data})
-        // console.log(data)
-    // };
 
     return(
         <div className='main-following'>

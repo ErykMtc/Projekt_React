@@ -27,21 +27,22 @@ export default function Ranking() {
 
 
     const [post, setPost] = useState(null);
-    const userdata = JSON.parse(Cookies.get('usrFilmoteka'));
+    if(Cookies.get('usrFilmoteka')){
+      const userdata = JSON.parse(Cookies.get('usrFilmoteka'));
+    }
+    
 
   useEffect(() => {
     axios.get('/movies', {
       headers: { 'Content-Type': 'application/json' },
                     auth: {
-                        username: userdata.user,
-                        password: userdata.pwd
+                        username: 'test',
+                        password: 'test1'
                     }
     }).then((response) => {
       setPost(response.data);
     });
   }, []);
-            console.log(auth);
-            console.log(post)
             if (!post) return null;
 
     return(

@@ -20,7 +20,7 @@ export default function Article(){
     const [post, setPost] = useState(null);
     const [index, setIndex] = useState(0);
     //const [cdesc, setCdesc] = useState("");
-    const [cmark, setCmark] = useState("");
+    const [cmark, setCmark] = useState(5);
     const [posted, setPosted] = useState(false);
     
     var cdesc = "";
@@ -40,6 +40,8 @@ export default function Article(){
             commentDateTime: "2011-10-10T14:48:00" };
             console.log(comment);
         setPosted(true);
+        //console.log("sdads");
+        //console.log(comment);
         axios.post("/movies/comment/" + mov_id, comment, {
             headers: { 'Content-Type': 'application/json' },
                           auth: {
@@ -145,20 +147,22 @@ export default function Article(){
                                             <h2>Komentarze</h2>
                                         </div>
                                         <div className="create-comment">
-                                            <Form onSubmit={ (e) => e.preventDefault()}>
+                                            <Form onSubmit={ (e) => {e.preventDefault(); setPosted(true); document.getElementById("butt").innerText="Opublikowano!";
+                                        document.getElementById("butt").disabled=true;}}>
                                                 <Form.Group className="mb-3" controlId="">
                                                     <Form.Label>Ocena: {cmark}</Form.Label>
                                                     <Form.Control className="com-range" type="range" min='0' max='10' onChange={(e) => setCmark(e.target.value)}/>
                                                     <Form.Label>Komentarz</Form.Label>
                                                     <Form.Control className="com-textarea" as="textarea" rows={3} onChange={(e) => cdesc = e.target.value}/>
                                                 </Form.Group>
-                                                <button class="third-section-btn" onClick={() => postComment(item.id, cmark, cdesc)}>{{posted} ? "Opublikuj" : "Opublikowano!"}</button>
+                                                <button id="butt" class="third-section-btn" onClick={() => postComment(item.id, cmark, cdesc)}> "Opublikuj"  </button>
                                             </Form>
+                                           
                                         </div>
             
                                         <div className="comment-section">
                                             {item.comments.map((item, iteration) => <div className="comment-box">
-                                                <p className="com-user">{item.commentUser}</p>
+                                                <p className="com-user">Ocena: {item.commentMark}/10</p>
                                                 <p className="com-text">{item.commentDescription}</p>
                                             </div>)}
 

@@ -66,6 +66,7 @@ export default function SignIn() {
             Cookies.set('usrFilmoteka', JSON.stringify({user:user, pwd:pwd, id:response.data.id, role:response.data.role}))
 
             //throw to another page
+            window.location.href = '/';
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
