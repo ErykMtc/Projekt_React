@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "bootstrap": "^5.2.2",
+    "js-cookie": "^3.0.1",
     "lodash": "^4.17.21",
     "mongodb": "^4.12.1",
     "objectid-tohexstring": "^1.0.0",

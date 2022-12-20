@@ -29,8 +29,6 @@ export default function CarouselComp(){
           setPost(response.data);
         });
       }, []);
-                console.log(auth);
-                console.log(post)
                 if (!post) return null;
     
                 return (

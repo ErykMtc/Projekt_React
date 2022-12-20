@@ -32,8 +32,6 @@ export default function CarouselRanking() {
           setPost(response.data);
         });
       }, []);
-                console.log(auth);
-                console.log(post)
                 if (!post) return null;
                 return (
                     <Carousel className="carousel-ranking" activeIndex={index} onSelect={handleSelect}>

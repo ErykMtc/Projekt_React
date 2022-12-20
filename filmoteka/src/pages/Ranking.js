@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth';
 import axios from 'axios';
 import { useRef, useState, useEffect, useContext } from 'react';
 import './Ranking.css';
-
+import Cookies from 'js-cookie';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -27,13 +27,14 @@ export default function Ranking() {
 
 
     const [post, setPost] = useState(null);
+    const userdata = JSON.parse(Cookies.get('usrFilmoteka'));
 
   useEffect(() => {
     axios.get('/movies', {
       headers: { 'Content-Type': 'application/json' },
                     auth: {
-                        username: 'test',
-                        password: 'test1'
+                        username: userdata.user,
+                        password: userdata.pwd
                     }
     }).then((response) => {
       setPost(response.data);
@@ -49,7 +50,9 @@ export default function Ranking() {
                 <h2 >Ranking Filmów</h2>
 
                 {post.sort((a, b) => (a.mark > b.mark) ? -1 : 1).map((item, iteration) => 
-                <div key={iteration} className='ranking-movie'>
+                <div key={iteration} className='ranking-movie' onClick={() => {
+                  window.location.href = '/movie/'+item.name;
+                }}>
                     <span>{iteration + 1}</span>
                     <p>{item.name}</p>
                     <span>{item.mark}/10 <FontAwesomeIcon icon={faStar} size='1x' /></span>

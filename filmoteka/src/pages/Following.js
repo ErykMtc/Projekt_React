@@ -5,26 +5,41 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuth from '../hooks/useAuth';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default function Following() {
 
     const {auth} = useAuth();
 
     const [movie, setMovie] = useState(null);
+    const userdata = JSON.parse(Cookies.get('usrFilmoteka'));
 
   useEffect(() => {
-    axios.get('/users/observed/movie', {
-      headers: { 'Content-Type': 'application/json' },
+    axios.post('/login',
+            {},
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true,
                     auth: {
-                        username: auth.user,
-                        password: auth.pwd
+                        username: userdata.user,
+                        password: userdata.pwd
                     }
-    }).then((response) => {
-      setMovie(response.data);
+                }
+            ).then((response) => {
+      setMovie(response.data.observedMovie.map((item, iteration) => axios.get('/movies/id/' + item,
+          {
+              headers: { 'Content-Type': 'application/json' },
+              withCredentials: true,
+              auth: {
+                  username: userdata.user,
+                  password: userdata.pwd
+              }
+          }
+      )));
     });
   }, []);
-            console.log(auth);
-        
+  console.log("huh");
+
             if (!movie) return(
                 <div className='main-following'>
                     <Container className='following-container'>

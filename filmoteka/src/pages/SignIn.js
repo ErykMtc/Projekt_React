@@ -5,6 +5,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useRef, useState, useEffect, useContext } from 'react';
 // import AuthContext from "../context/AuthProvider";
 import axios from 'axios';
+import Cookies from 'js-cookie';
+
 
 import useAuth from '../hooks/useAuth';
 
@@ -51,15 +53,17 @@ export default function SignIn() {
                 }
             );
 
-            // console.log(response?.data);
+            console.log(response?.data);
 
             // const accessToken = response?.data?.accessToken;
             
             const roles = response?.data.role;
             /// console.log(roles)
-            setAuth({ user, pwd, roles});
+            setAuth({user, pwd, roles});
             setUser('');
             setPwd('');
+            console.log(response.data.id);
+            Cookies.set('usrFilmoteka', JSON.stringify({user:user, pwd:pwd, id:response.data.id, role:response.data.role}))
 
             //throw to another page
             navigate(from, { replace: true });

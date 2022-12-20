@@ -6,7 +6,7 @@ import './Article.css';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Form from 'react-bootstrap/Form';
-
+import Cookies from 'js-cookie';
 import useAuth from '../hooks/useAuth';
 import axios from 'axios';
 import { useRef, useState, useEffect, useContext } from 'react';
@@ -19,35 +19,56 @@ export default function Article(){
     const {auth} = useAuth();
     const [post, setPost] = useState(null);
     const [index, setIndex] = useState(0);
+    //const [cdesc, setCdesc] = useState("");
+    const [cmark, setCmark] = useState("");
+    const [posted, setPosted] = useState(false);
+    
+    var cdesc = "";
+    //var cmark = "";
+    const userdata = JSON.parse(Cookies.get('usrFilmoteka'));
 
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
 
-    function addToFavs(mov_id){
-        /*
-        let comment = {commentId:1,
-            commentDescription:"desc",
-            commentMark:5,
-            commentUser:1,
-            commentMovieId:"637f2587db6f1107d26b1cf6",
+    function postComment(mov_id, mark, desc){
+        if (!posted){
+        let comment = {
+            commentDescription:desc,
+            commentMark:mark,
+            commentUser:userdata.id,
             commentDateTime: "2011-10-10T14:48:00" };
-        axios.post("/movies/comment/" + "637f2587db6f1107d26b1cf6", comment, {
+            console.log(comment);
+        setPosted(true);
+        axios.post("/movies/comment/" + mov_id, comment, {
             headers: { 'Content-Type': 'application/json' },
                           auth: {
-                              username: 'test',
-                              password: 'test1'
+                              username: userdata.user,
+                              password: userdata.pwd
                           }
-          });*/
-          console.log(auth.user);
+          }).then(
+            res=>console.log(res)
+        )
+        }
+    }
+
+    function addToFavs(mov_id){
+          console.log(userdata);
+          axios.put("/users/observed/movie?id=" + userdata.id + "&movie_id="+ mov_id + "", {}, {
+            headers: { 'Content-Type': 'application/json' },
+                          auth: {
+                              username: userdata.user,
+                              password: userdata.pwd
+                          }
+          });
     }
 
     useEffect(() => {
         axios.get('/movies/name/'+ window.location.href.substring(window.location.href.lastIndexOf('/') + 1), {
           headers: { 'Content-Type': 'application/json' },
                         auth: {
-                            username: auth.user,
-                            password: auth.pwd
+                            username: userdata.user,
+                            password: userdata.pwd
                         }
         }).then((response) => {
           setPost(response.data);
@@ -124,12 +145,14 @@ export default function Article(){
                                             <h2>Komentarze</h2>
                                         </div>
                                         <div className="create-comment">
-                                            <Form>
+                                            <Form onSubmit={ (e) => e.preventDefault()}>
                                                 <Form.Group className="mb-3" controlId="">
+                                                    <Form.Label>Ocena: {cmark}</Form.Label>
+                                                    <Form.Control className="com-range" type="range" min='0' max='10' onChange={(e) => setCmark(e.target.value)}/>
                                                     <Form.Label>Komentarz</Form.Label>
-                                                    <Form.Control className="com-textarea" as="textarea" rows={3} />
+                                                    <Form.Control className="com-textarea" as="textarea" rows={3} onChange={(e) => cdesc = e.target.value}/>
                                                 </Form.Group>
-                                                <button class="third-section-btn">Opublikuj</button>
+                                                <button class="third-section-btn" onClick={() => postComment(item.id, cmark, cdesc)}>{{posted} ? "Opublikuj" : "Opublikowano!"}</button>
                                             </Form>
                                         </div>
             
@@ -152,3 +175,5 @@ export default function Article(){
 
 
 }
+
+
