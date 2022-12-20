@@ -1,0 +1,59 @@
+.browse-main{
+    margin: 1rem 0rem;
+    padding: 0rem 2rem;
+}
+
+.browse-col{
+    text-align: left;
+    
+}
+
+.browse-container{
+    text-align: center;
+}
+
+.browse-nav{
+    text-align: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.browse-alphabet{
+    text-align: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 1rem;
+}
+
+.browse-letter{
+    cursor: pointer;
+}
+
+.browse-movie{
+    cursor: pointer;
+    margin: 0.5rem 0;
+    display:inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 60rem;
+    padding: 2.5rem;
+    align-items: center;
+    border: 2px solid orange;
+    background-color: rgba(128, 128, 128, 0.128);
+    border-radius: 4px;
+}
+
+.browse-container h1{
+    font-size: 2rem;
+    color: rgb(99, 99, 99);
+    font-style: italic;
+}
+
+.browse-container h2{
+    font-size: 1.5rem;
+    margin: 0.8rem;
+    text-align: center;
+}

@@ -30,7 +30,7 @@ export default function Navbar() {
       
       <ul className="menu">
         <CustomLink to="/">Strona Główna</CustomLink>
-        <CustomLink to="/about">Kontakt</CustomLink>
+        <CustomLink to="/browse">Filmy</CustomLink>
         <CustomLink to="/ranking">Ranking</CustomLink>
         <CustomLink to="/following">Ulubione</CustomLink>
         <CustomLink to="#" onClick={() => setVisible(!visible)}>Wyszukaj <FontAwesomeIcon icon={faSearch} /></CustomLink>

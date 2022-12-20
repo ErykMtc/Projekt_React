@@ -17,6 +17,7 @@ import Following from './pages/Following';
 import ProtectedRoutes from './hooks/ProtectedRoutes';
 import Browse from './pages/Browse';
 
+
 function App() {
   return (
     <>

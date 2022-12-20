@@ -41,7 +41,9 @@ export default function CarouselComp(){
                                 <img className="d-block w-100" src={`data:image/jpeg;base64,${item.picture}`} alt="First slide" />
                                 <Carousel.Caption>
                                     <div className="info-panel">
-                                        <h3>{item.name}</h3>
+                                        <h3 className="info-h3" onClick={() => {
+                                                window.location.href = '/movie/'+item.name;
+                                              }}>{item.name}</h3>
                                         <p>{item.description}</p>
                                     </div>
                                 </Carousel.Caption>

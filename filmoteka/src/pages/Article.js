@@ -10,10 +10,10 @@ import Form from 'react-bootstrap/Form';
 import useAuth from '../hooks/useAuth';
 import axios from 'axios';
 import { useRef, useState, useEffect, useContext } from 'react';
-
 import Img1 from "../img/img-1.jpg";
 import Img2 from "../img/img-2.jpg";
 import Img3 from "../img/img-3.jpg";
+
 
 export default function Article(){
     const {auth} = useAuth();
@@ -24,13 +24,30 @@ export default function Article(){
         setIndex(selectedIndex);
     };
 
+    function addToFavs(mov_id){
+        /*
+        let comment = {commentId:1,
+            commentDescription:"desc",
+            commentMark:5,
+            commentUser:1,
+            commentMovieId:"637f2587db6f1107d26b1cf6",
+            commentDateTime: "2011-10-10T14:48:00" };
+        axios.post("/movies/comment/" + "637f2587db6f1107d26b1cf6", comment, {
+            headers: { 'Content-Type': 'application/json' },
+                          auth: {
+                              username: 'test',
+                              password: 'test1'
+                          }
+          });*/
+          console.log(auth.user);
+    }
 
     useEffect(() => {
         axios.get('/movies/name/'+ window.location.href.substring(window.location.href.lastIndexOf('/') + 1), {
           headers: { 'Content-Type': 'application/json' },
                         auth: {
-                            username: 'test',
-                            password: 'test1'
+                            username: auth.user,
+                            password: auth.pwd
                         }
         }).then((response) => {
           setPost(response.data);
@@ -49,9 +66,7 @@ export default function Article(){
                                     <Col className="article-top" lg='5'>
                                         <img className="article-img" src={`data:image/jpeg;base64,${item.picture}`} alt="First" />
                                         <div className="article-img-subsection">
-                                        <input type="text" name="name" placeholder="-" /> 
-                                        <span>/10 <FontAwesomeIcon icon={faStar} size='1x' /></span>
-                                        <input type="submit" value="Oceń" />
+                                        <input type="submit" value="Dodaj do ulubionych" onClick={() => addToFavs(item.id)} />
                                         </div>
                                     </Col>
                                     <Col lg='7'>

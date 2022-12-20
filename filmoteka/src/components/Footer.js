@@ -3,7 +3,10 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom"
 export default function Navbar() {
   return (
     <div className="footer">
-        <p>lorem ipsum aaaddd</p>
+               <p className="footer-p" onClick={() => {
+                    window.location.href = '/about';
+                  }}>Kontakt</p>
+                <p>Politechnika 2022</p>
     </div>
   )
 }

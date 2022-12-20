@@ -13,7 +13,7 @@ export default function Following() {
     const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    axios.get('/movies', {
+    axios.get('/users/observed/movie', {
       headers: { 'Content-Type': 'application/json' },
                     auth: {
                         username: auth.user,
@@ -24,7 +24,20 @@ export default function Following() {
     });
   }, []);
             console.log(auth);
-            if (!movie) return null;
+        
+            if (!movie) return(
+                <div className='main-following'>
+                    <Container className='following-container'>
+                        {/* <div>{this.state.movie}</div> */}
+                        <h2>Ulubione filmy</h2>
+                        <hr></hr>
+        
+                        <div> Brak ulubionych</div>
+                        
+        
+                    </Container>
+                </div>
+            );
 
     // componentDidMount(){
     //     this.state.auth = useAuth();
@@ -47,14 +60,6 @@ export default function Following() {
                 {/* <div>{this.state.movie}</div> */}
                 <h2>Ulubione filmy</h2>
                 <hr></hr>
-
-                {/* {post.map((item, iteration) => 
-                <div key={iteration} className='following-movie'>
-                    <span>{iteration + 1}</span>
-                    <p>{item.name}</p>
-                    <span>{item.mark}/10 <FontAwesomeIcon icon={faStar} size='1x' /></span>
-                </div>
-                )} */}
 
                 {movie.map((item, iteration) => 
                 <div key={iteration} className='following-movie'>

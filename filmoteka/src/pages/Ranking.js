@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import useAuth from '../hooks/useAuth';
 import axios from 'axios';
 import { useRef, useState, useEffect, useContext } from 'react';
+import './Ranking.css';
 
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,8 +32,8 @@ export default function Ranking() {
     axios.get('/movies', {
       headers: { 'Content-Type': 'application/json' },
                     auth: {
-                        username: auth.user,
-                        password: auth.pwd
+                        username: 'test',
+                        password: 'test1'
                     }
     }).then((response) => {
       setPost(response.data);
@@ -43,16 +44,12 @@ export default function Ranking() {
             if (!post) return null;
 
     return(
-        <div>
+        <div className='ranking-main'>
             <Container>
-                    {/* <div>{this.state.movie}</div> */}
-                <h2>Ranking Filmów</h2>
-                <hr></hr>
+                <h2 >Ranking Filmów</h2>
 
-                {/* {post[0].name}  */}
-
-                {post.map((item, iteration) => 
-                <div key={iteration} className='following-movie'>
+                {post.sort((a, b) => (a.mark > b.mark) ? -1 : 1).map((item, iteration) => 
+                <div key={iteration} className='ranking-movie'>
                     <span>{iteration + 1}</span>
                     <p>{item.name}</p>
                     <span>{item.mark}/10 <FontAwesomeIcon icon={faStar} size='1x' /></span>

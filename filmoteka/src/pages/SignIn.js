@@ -51,11 +51,12 @@ export default function SignIn() {
                 }
             );
 
-            console.log(response?.data);
+            // console.log(response?.data);
 
             // const accessToken = response?.data?.accessToken;
+            
             const roles = response?.data.role;
-            console.log(roles)
+            /// console.log(roles)
             setAuth({ user, pwd, roles});
             setUser('');
             setPwd('');
