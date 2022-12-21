@@ -106,8 +106,10 @@ export default function Registration() {
         }
 
         try {
+            const login = user;
+            const password = pwd;
             const response = await axios.post('/register',
-                JSON.stringify({ user, pwd, firstName, lastName, email }),
+                JSON.stringify({ firstName, lastName, email, login, password }),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -186,11 +188,11 @@ export default function Registration() {
                                             className={
                                                 userFocus && user && !validName ? "instructions" : "offscreen"
                                             }
-                                        >4 to 24 characters.
+                                        >4 do 25 znaków.
                                             <br />
-                                            Must begin with a letter.
+                                            Dozwolone znaki:
                                             <br />
-                                            Letters, numbers, underscores, hyphens allowed.
+                                            cyfry, duże i małe litery
                                         </p>
 
                                     </div>
@@ -216,12 +218,11 @@ export default function Registration() {
                                             id="pwdnote"
                                             className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
                                         >
-                                            8 to 24 characters.
+                                            5 do 25 znaków.
                                             <br />
-                                            Must include uppercase and lowercase letters, a number and a
-                                            special character.
+                                            W tekście muszą znależć się małe i duże litery oraz cyfry
                                             <br />
-                                            Allowed special characters:{" "}
+                                            Dozwolone cyfry i litery z angielskiego alfabetu
                                         </p>
                                     </div>
 
@@ -248,7 +249,7 @@ export default function Registration() {
                                                 matchFocus && !validMatch ? "instructions" : "offscreen"
                                             }
                                         >
-                                            Must match the first password input field.
+                                            Hasło musi być identyczne do pierwszego!
                                         </p>
                                     </div>
 
@@ -275,7 +276,11 @@ export default function Registration() {
                                                 mailFocus && !validMail ? "instructions" : "offscreen"
                                             }
                                         >
-                                            AAAAAAA
+                                            Email musi zawierać od 3 do 30 znaków
+                                            <br></br>
+                                            Farma: przyklad@nazwa.com
+                                            <br></br>
+                                            Dozwolone: litery, cyfry, znaki: ._%+- 
                                         </p>
                                     </div>
 
@@ -302,7 +307,10 @@ export default function Registration() {
                                                 firstNameFocus && !validFirstName ? "instructions" : "offscreen"
                                             }
                                         >
-                                            AAAAAAAbbbbbbb
+                                            2 do 25 znaków.
+                                            <br />
+                                            W tekście muszą znależć się małe i duże litery
+                                            <br />
                                         </p>
                                     </div>
 
@@ -329,7 +337,10 @@ export default function Registration() {
                                                 lastNameFocus && !validLastName ? "instructions" : "offscreen"
                                             }
                                         >
-                                            AAAAAAAbbbbbbbccccc
+                                            2 do 25 znaków.
+                                            <br />
+                                            W tekście muszą znależć się małe i duże litery
+                                            <br />
                                         </p>
                                     </div>
 
