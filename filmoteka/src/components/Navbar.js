@@ -1,4 +1,4 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import { Link, Navigate, useMatch, useResolvedPath,useNavigate, useLocation  } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faRectangleXmark} from '@fortawesome/free-solid-svg-icons'
 import React, { useRef, useState, useEffect } from 'react';
@@ -8,6 +8,10 @@ import ProtectedRoutes from "../hooks/ProtectedRoutes";
 
 export default function Navbar() {
   const [visible, setVisible] = React.useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname;
 
   const [movie, setMovie] = useState(null);
   var userdata = Cookies.get('usrFilmoteka');
@@ -21,9 +25,15 @@ export default function Navbar() {
     console.log("jestem")
     try {
       const res = await axios.get('/movies/search', { params: { name: movie } });
+      if(res.data != null){
+        const path = "/movie/name/" + res.data[0].name;
+        console.log(res.data[0].name);
+        navigate(path, { replace: true });
+      }
+      
     } catch(err){
       console.log("nie bangla");
-    }   
+    }
   }
 
   return (

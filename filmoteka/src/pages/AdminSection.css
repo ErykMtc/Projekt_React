@@ -1,5 +1,16 @@
 .admin-main{
     margin: 2rem 0;
+    text-align: center;
+}
+
+.admin-main hr{
+    width: 6rem;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.admin-main label{
+    margin: 0.25rem 0 0.125rem 0;
 }
 
 .admin-main button{
@@ -11,6 +22,7 @@
     flex-direction: column;
 }
 
+
 .admin-user{
     margin: 0.5rem 0;
     display: flex;
@@ -21,6 +33,8 @@
     border: 2px solid orange;
     background-color: rgba(128, 128, 128, 0.128);
     border-radius: 4px;
+    justify-content: space-between;
+    max-height: 7.5rem;
 }
 
 .admin-user span{
@@ -32,7 +46,34 @@
     margin: 0;
 }
 
+
 .admin-last-sec{
     display: flex;
     flex-direction: column;
+}
+
+/* Actor section */
+
+.admin-actor-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem
+}
+
+.admin-actor-list li{
+    font-size: 1.5rem;
+    flex-basis: 32%;
+    list-style-image: url(../img/bullet.svg);
+}
+
+.admin-actor-list li::marker{
+    font-size: 2.5rem;
+}
+
+.actor-special-div input{
+    margin: 0 1rem;
+}
+
+.admin-user-section{
+    margin: 2rem 0;
 }
