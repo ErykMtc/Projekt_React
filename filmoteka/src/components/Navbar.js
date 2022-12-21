@@ -49,12 +49,13 @@ export default function Navbar() {
         <CustomLink to="/">Strona Główna</CustomLink>
         <CustomLink to="/browse">Filmy</CustomLink>
         <CustomLink to="/ranking">Ranking</CustomLink>
-        <CustomLink to="/following">Ulubione</CustomLink>
+        <CustomLink to="/following" >{ userdata ? "Ulubione" : ""}</CustomLink>
         <CustomLink to="#" onClick={() => setVisible(!visible)}>Wyszukaj <FontAwesomeIcon icon={faSearch} /></CustomLink>
         
         {/* Zrobić wyszukiwarke podobną do tej na stronie Cisco */}
       </ul>
       <div className="login-section">
+      
         <Link onClick={() => {
          if(userdata){
           Cookies.remove('usrFilmoteka');
@@ -64,7 +65,8 @@ export default function Navbar() {
           window.location.href = '/login';
           userdata = Cookies.get('usrFilmoteka');
          } 
-        }} to={userdata ? "/" : "/login"}  className="login-btn">{ userdata ? userdata.user : "Zaloguj się"}</Link>
+        }} to={userdata ? "/" : "/login"}  className="login-btn">{ userdata ? "Wyloguj" : "Zaloguj się"}</Link>
+        {userdata ? "Użytkownik: " + userdata.user : ""}
         </div> 
  
       

@@ -6,6 +6,7 @@ import useAuth from '../hooks/useAuth';
 import axios from 'axios';
 import './Browse.css';
 import { useRef, useState, useEffect, useContext } from 'react';
+import Cookies from 'js-cookie';
 
 
 import { faStar } from '@fortawesome/free-solid-svg-icons';
@@ -25,7 +26,7 @@ export default function Browse() {
     //       console.log(error);
     //     }
     //   }
-
+    
     const alphabet = ["Wszystkie","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
     const [post, setPost] = useState(null);
@@ -80,7 +81,12 @@ export default function Browse() {
 
                 {filtered.sort((a, b) => (a.name > b.name) ? 1 : -1).slice(start, start + 5 < filtered.length ? start + 5 : filtered.length).map((item, iteration) => 
                 <Row key={iteration} className='browse-movie'  onClick={() => {
-                    window.location.href = '/movie/'+item.name;
+                    if (Cookies.get('usrFilmoteka')){
+                        window.location.href = '/movie/'+item.name;
+                    }else{
+                        window.alert("Zaloguj się");
+                    }
+                    
                   }} fluid>
                     <Col className='browse-col' >
                         <Stack  gap={1}> 

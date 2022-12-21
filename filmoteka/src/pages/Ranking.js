@@ -52,7 +52,11 @@ export default function Ranking() {
 
                 {post.sort((a, b) => (a.mark > b.mark) ? -1 : 1).map((item, iteration) => 
                 <div key={iteration} className='ranking-movie' onClick={() => {
-                  window.location.href = '/movie/'+item.name;
+                  if (Cookies.get('usrFilmoteka')){
+                    window.location.href = '/movie/'+item.name;
+                }else{
+                    window.alert("Zaloguj się");
+                }
                 }}>
                     <span>{iteration + 1}</span>
                     <p>{item.name}</p>

@@ -83,7 +83,7 @@ export default function Following() {
                 <hr></hr>
 
                 {movie.map((item, iteration) => 
-                <div key={iteration} className='following-movie'>
+                <div key={iteration} className='following-movie' onClick={() => {window.location.href = '/movie/'+item.name;}}>
                     <span>{iteration + 1}</span>
                     <p>{item.name}</p>
                     <span>{item.mark}/10 <FontAwesomeIcon icon={faStar} size='1x' /></span>

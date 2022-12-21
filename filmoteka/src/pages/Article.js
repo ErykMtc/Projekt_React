@@ -22,6 +22,8 @@ export default function Article(){
     //const [cdesc, setCdesc] = useState("");
     const [cmark, setCmark] = useState(5);
     const [posted, setPosted] = useState(false);
+    const [observed, setObserved] = useState(null);
+    const [usercom, setUsercom] = useState([]);
     
     var cdesc = "";
     //var cmark = "";
@@ -30,6 +32,12 @@ export default function Article(){
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
+
+    function deleteComment(comment_id){
+        var tempost = post[0];
+        tempost.comments = post[0].comments.filter(item => item.commentId != comment_id)
+        setPost([tempost])
+    }
 
     function postComment(mov_id, mark, desc){
         if (!posted){
@@ -42,6 +50,7 @@ export default function Article(){
         setPosted(true);
         //console.log("sdads");
         //console.log(comment);
+        setUsercom(oldArray => [...oldArray, comment])
         axios.post("/movies/comment/" + mov_id, comment, {
             headers: { 'Content-Type': 'application/json' },
                           auth: {
@@ -49,7 +58,8 @@ export default function Article(){
                               password: userdata.pwd
                           }
           }).then(
-            res=>console.log(res)
+            res=>{console.log(res);
+            }
         )
         }
     }
@@ -63,6 +73,7 @@ export default function Article(){
                               password: userdata.pwd
                           }
           });
+          setObserved(true);
     }
 
     useEffect(() => {
@@ -74,7 +85,26 @@ export default function Article(){
                         }
         }).then((response) => {
           setPost(response.data);
+          axios.post('/login',
+          {},
+              {
+                  headers: { 'Content-Type': 'application/json' },
+                  withCredentials: true,
+                  auth: {
+                      username:  userdata.user,
+                      password: userdata.pwd
+                  }
+              }
+          ).then((response2)=> {setObserved(response2.data.observedMovie.includes(response.data[0].id));
+              console.log(response2.data.observedMovie);
+              console.log(response.data[0].id)});
         });
+        //console.log("test");
+        //console.log(post[0].id)
+        //console.log(observed)
+
+                
+        
       }, []);
                 console.log(auth);
                 console.log(post)
@@ -89,7 +119,7 @@ export default function Article(){
                                     <Col className="article-top" lg='5'>
                                         <img className="article-img" src={`data:image/jpeg;base64,${item.picture}`} alt="First" />
                                         <div className="article-img-subsection">
-                                        <input type="submit" value="Dodaj do ulubionych" onClick={() => addToFavs(item.id)} />
+                                        <input type="submit" value={observed ? "Usuń z ulubionych" : "Dodaj do ulubionych"} onClick={() => observed ? setObserved(false) : addToFavs(item.id) } />
                                         </div>
                                     </Col>
                                     <Col lg='7'>
@@ -155,16 +185,24 @@ export default function Article(){
                                                     <Form.Label>Komentarz</Form.Label>
                                                     <Form.Control className="com-textarea" as="textarea" rows={3} onChange={(e) => cdesc = e.target.value}/>
                                                 </Form.Group>
-                                                <button id="butt" class="third-section-btn" onClick={() => postComment(item.id, cmark, cdesc)}> "Opublikuj"  </button>
+                                                <button id="butt" class="third-section-btn" onClick={() => postComment(item.id, cmark, cdesc)}> Opublikuj  </button>
                                             </Form>
                                            
                                         </div>
             
                                         <div className="comment-section">
-                                            {item.comments.map((item, iteration) => <div className="comment-box">
+                                        {usercom.map((item, iteration) => <div className="comment-box">
                                                 <p className="com-user">Ocena: {item.commentMark}/10</p>
                                                 <p className="com-text">{item.commentDescription}</p>
-                                            </div>)}
+                                        </div>)
+                                        }
+                                            {item.comments.map((item, iteration) => <div className="comment-box">
+                                            {userdata.role != "USER" ? <button onClick={() => (deleteComment(item.commentId))}>Usuń</button>: "" }
+                                                <p className="com-user">Ocena: {item.commentMark}/10</p>
+                                                <p className="com-text">{item.commentDescription}</p>
+                                                
+                                        </div>)
+                                        }
 
                                         </div>
             
