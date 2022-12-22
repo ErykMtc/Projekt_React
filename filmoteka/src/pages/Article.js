@@ -76,6 +76,17 @@ export default function Article(){
           setObserved(true);
     }
 
+    function deleteMovie(mov_id){
+        axios.delete("/movies/delete/" + mov_id, {
+          headers: { 'Content-Type': 'application/json' },
+                        auth: {
+                            username: userdata.user,
+                            password: userdata.pwd
+                        }
+        });
+        window.location.href = '/';
+  }
+
     useEffect(() => {
         axios.get('/movies/name/'+ window.location.href.substring(window.location.href.lastIndexOf('/') + 1), {
           headers: { 'Content-Type': 'application/json' },
@@ -123,15 +134,18 @@ export default function Article(){
                                         </div>
                                     </Col>
                                     <Col lg='7'>
+                                    
                                         <p className="title">{item.name}</p>
+                                        {userdata.role != "USER" ? <button onClick={() => (deleteMovie(item.id))}>Usuń</button>: "" }
                                         <div className="right-section">
                                             <p className="chart-text">Ocena:</p> <p className="chart">{item.mark}/10 <FontAwesomeIcon icon={faStar} size='1x' /></p>
+                                            
                                         </div>
                                         <div className="right-section">
                                             <p className="special-text">rezyseria</p> <p className="special-text-info">{item.director ? item.director.directorFirstName + " " + item.director.directorLastName : " "} </p>
                                         </div>
                                         <div className="right-section">
-                                            <p className="special-text">gatunek</p> <p className="special-text-info">{item.genre ? item.genre.genreName : " "}</p>
+                                            <p className="special-text">gatunek</p> <p className="special-text-info">{item.genre ? item.genre.map((item, iteration) => (item.genreName + " ")) : " "}</p>
                                         </div>
                                         <div className="right-section">
                                             <p className="special-text">wytwórnia</p> <p className="special-text-info">{item.studio ? item.studio.studioName : " "}</p>
