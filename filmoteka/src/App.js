@@ -17,21 +17,27 @@ import Following from './pages/Following';
 import ProtectedRoutes from './hooks/ProtectedRoutes';
 import Browse from './pages/Browse';
 import Cookies from 'js-cookie';
+import Search from './pages/Search';
 
 function App() {
   return (
     <>
       {/* <Router> */}
-        <AdminNav />
+      
+      {Cookies.get('usrFilmoteka') ? (JSON.parse(Cookies.get('usrFilmoteka')).role === 'ADMIN' ? 
+      <AdminNav /> : <div></div>)
+       : <div></div> }
+        
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/login' element={<SignIn />} />
           <Route path='/register' element={<Registration />} />
-          <Route path='/admin' element={<AdminSection />} />
+          {Cookies.get('usrFilmoteka') && <Route path='/admin' element={<AdminSection />} />}
           <Route path='/browse' element={<Browse />} />
           <Route path='/ranking' element={<Ranking />} />
+          <Route path='/search' element={<Search />} />
         {/* <Route element={<ProtectedRoutes allowedRoles={"USER"}/>}> */}
             {Cookies.get('usrFilmoteka') && <Route path='/news' element={<News />} />}
             {Cookies.get('usrFilmoteka') && <Route path='/following' element={<Following />} />}

@@ -14,7 +14,7 @@ These libraries are necessary for proper work on the project
 
 ### `npm i js-cookie`
 
-## `Running`
+## Running
 
 In the project directory, you can run:
 
@@ -22,4 +22,16 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## Screenshot
+
+![Alt text](src/img/img-temp.png)
+
+![Alt text](src/img/img-temp-2.png)
+
+![Alt text](src/img/img-temp-3.png)
+
+![Alt text](src/img/img-temp-4.png)
+
+![Alt text](src/img/img-temp-5.png)
 

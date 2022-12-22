@@ -42,7 +42,7 @@ export default function CarouselComp(){
                                         <h3 className="info-h3" onClick={() => {
                                                 window.location.href = '/movie/'+item.name;
                                               }}>{item.name}</h3>
-                                        <p>{item.description}</p>
+                                        <p>{item.description.substring(0, 230)} ...</p>
                                     </div>
                                 </Carousel.Caption>
                         </Carousel.Item>

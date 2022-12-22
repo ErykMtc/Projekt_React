@@ -137,7 +137,7 @@ export default class Home extends Component {
                                             </div>
                                             <div className="news-info-box-content">
                                                 <h3>{item.name}</h3>
-                                                <p>{item.description}</p>
+                                                <p>{item.description.substring(0, 250)}...</p>
                                                 <button className="third-section-btn">Czytaj więcej...</button>
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@ export default class Home extends Component {
                                         </div>
                                         <div className="news-info-box-content">
                                             <h3>{item.name}</h3>
-                                            <p>{item.description}</p>
+                                            <p>{item.description.substring(0, 300)}...</p>
                                             <button className="third-section-btn">Czytaj więcej...</button>
                                         </div>
                                     </div>

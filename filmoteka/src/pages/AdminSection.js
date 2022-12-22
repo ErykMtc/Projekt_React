@@ -7,10 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useAuth from '../hooks/useAuth';
 import axios from 'axios';
 import React, { useState, useEffect } from "react";
+import Cookies from 'js-cookie';
 
 export default function AdminSection() {
 
     const { auth } = useAuth();
+
+    
 
     const [movie, setMovie] = useState(
         {
@@ -46,23 +49,26 @@ export default function AdminSection() {
     const [actorLastName, setActorLastName] = useState('');
     const [files, setFiles] = useState([]);
     const [base64img, setBase64img] = useState('');
+    const [name, setName] = useState('');
+    const [description, setDescription] = useState('');
+    const [movieID, setMovieID] = useState('');
 
 
 
 
 
     useEffect(() => {
+        console.log()
         axios.get('/users', {
             headers: { 'Content-Type': 'application/json' },
             auth: {
-                username: "matTest",
-                password: "test1"
+                username: JSON.parse(Cookies.get('usrFilmoteka')).user,
+                password: JSON.parse(Cookies.get('usrFilmoteka')).pwd
             }
         }).then((response) => {
             setUser(response.data);
         });
     }, []);
-
 
 
 
@@ -77,15 +83,15 @@ export default function AdminSection() {
     //     });
     //   }, []);
 
-    const refresh = async (e) => {
+    const refresh = (e) => {
         axios.get('/users', {
             headers: { 'Content-Type': 'application/json' },
             auth: {
-                username: "matTest",
-                password: "test1"
+                username: JSON.parse(Cookies.get('usrFilmoteka')).user,
+                password: JSON.parse(Cookies.get('usrFilmoteka')).pwd
             }
         }).then((response) => {
-            setUser(response.data);
+            setUser(user => response.data);
         });
     }
 
@@ -98,8 +104,8 @@ export default function AdminSection() {
             , {
                 headers: { 'Content-Type': 'application/json' },
                 auth: {
-                    username: "matTest",
-                    password: "test1"
+                    username: JSON.parse(Cookies.get('usrFilmoteka')).user,
+                    password: JSON.parse(Cookies.get('usrFilmoteka')).pwd
                 }
             }).then((response) => {
             });
@@ -111,8 +117,8 @@ export default function AdminSection() {
         axios.post('/notices/add', notice, {
             headers: { 'Content-Type': 'application/json' },
             auth: {
-                username: "matTest",
-                password: "test1"
+                username: JSON.parse(Cookies.get('usrFilmoteka')).user,
+                password: JSON.parse(Cookies.get('usrFilmoteka')).pwd
             }
         }).then((response) => {
         });
@@ -124,12 +130,14 @@ export default function AdminSection() {
             params: { id: selectUser.id, role: e.target.value },
             headers: { 'Content-Type': 'application/json' },
             auth: {
-                username: "matTest",
-                password: "test1"
+                username: JSON.parse(Cookies.get('usrFilmoteka')).user,
+                password: JSON.parse(Cookies.get('usrFilmoteka')).pwd
             }
         }).then((response) => {
+            // console.log(response)
         });
         // refresh();
+        window.location.reload(false);
     }
 
 
@@ -137,8 +145,8 @@ export default function AdminSection() {
         axios.delete('users/delete/' + deleteUser.id, {
             headers: { 'Content-Type': 'application/json' },
             auth: {
-                username: "matTest",
-                password: "test1"
+                username: JSON.parse(Cookies.get('usrFilmoteka')).user,
+                password: JSON.parse(Cookies.get('usrFilmoteka')).pwd
             }
         }).then((response) => {
         });
@@ -163,6 +171,20 @@ export default function AdminSection() {
             //         "actor": actor
             //     }))
         );
+    }
+
+    const changeMovie = async (e) => {
+        // console.log("zmiana", e.target.value, selectUser.id);
+        axios.put('movies/update', {}, {
+            params: { id: movieID, name: name, description: description },
+            headers: { 'Content-Type': 'application/json' },
+            auth: {
+                username: JSON.parse(Cookies.get('usrFilmoteka')).user,
+                password: JSON.parse(Cookies.get('usrFilmoteka')).pwd
+            }
+        }).then((response) => {
+        });
+        // refresh();
     }
 
 
@@ -278,10 +300,6 @@ export default function AdminSection() {
                             }))} value={movie.description || ''}
                             required />
 
-
-
-
-                        {/* Dodac to do udestepnianych */}
                         <label for="movie-img">Wybierz zdjęcie:</label>
                         <input type="file"
                             id="movie-img" name=""
@@ -369,6 +387,30 @@ export default function AdminSection() {
                             id="notice-img" name=""
                             accept="image/jpeg" ></input>
                         <button onClick={(e) => noticeClick()} className='btn btn-primary'>Dodaj</button>
+                    </Col>
+                </Row>
+
+
+                <h1>Modyfikuj Film</h1>
+                <hr></hr>
+                <Row>
+                    
+                    <Col className='admin-last-sec'>
+                    <label for="film-id">Wpisz id:</label>
+                        <input type="text" id="film-id"
+                            onChange={(e) => setMovieID(e.target.value)} value={movieID || ''}
+                            required ></input>
+
+                        <label for="film-title">Wpisz tytuł:</label>
+                        <input type="text" id="film-title"
+                            onChange={(e) => setName(e.target.value)} value={name || ''}
+                            required ></input>
+
+                        <label for="filmm-desc">Dodaj opis:</label>
+                        <textarea id="filmm-desc" rows="8" cols="50" onChange={(e) => setDescription(e.target.value)}
+                          value={description || ''}  required ></textarea>
+
+                        <button onClick={(e) => changeMovie()} className='btn btn-primary'>Zmień</button>
                     </Col>
                 </Row>
             </Container>
