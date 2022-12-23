@@ -57,18 +57,7 @@ export default function AdminSection() {
 
 
 
-    useEffect(() => {
-        console.log()
-        axios.get('/users', {
-            headers: { 'Content-Type': 'application/json' },
-            auth: {
-                username: JSON.parse(Cookies.get('usrFilmoteka')).user,
-                password: JSON.parse(Cookies.get('usrFilmoteka')).pwd
-            }
-        }).then((response) => {
-            setUser(response.data);
-        });
-    }, []);
+    
 
 
 
@@ -136,8 +125,8 @@ export default function AdminSection() {
         }).then((response) => {
             // console.log(response)
         });
-        // refresh();
-        window.location.reload(false);
+        refresh();
+        // window.location.reload(false);
     }
 
 
@@ -150,6 +139,7 @@ export default function AdminSection() {
             }
         }).then((response) => {
         });
+        refresh();
     }
 
     useEffect(() => {
@@ -175,8 +165,8 @@ export default function AdminSection() {
 
     const changeMovie = async (e) => {
         // console.log("zmiana", e.target.value, selectUser.id);
-        axios.put('movies/update', {}, {
-            params: { id: movieID, name: name, description: description },
+        axios.put('movies/update/' + movieID, {name: name, description: description}, {
+            params: {  },
             headers: { 'Content-Type': 'application/json' },
             auth: {
                 username: JSON.parse(Cookies.get('usrFilmoteka')).user,
@@ -226,6 +216,20 @@ export default function AdminSection() {
             "picture": base64img
         }))
     }, [base64img]);
+
+
+    useEffect(() => {
+        console.log()
+        axios.get('/users', {
+            headers: { 'Content-Type': 'application/json' },
+            auth: {
+                username: JSON.parse(Cookies.get('usrFilmoteka')).user,
+                password: JSON.parse(Cookies.get('usrFilmoteka')).pwd
+            }
+        }).then((response) => {
+            setUser(response.data);
+        });
+    },[]);
 
 
     console.log(movie);
